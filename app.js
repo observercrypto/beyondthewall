@@ -25,15 +25,14 @@ slackbot.on('start', function() {
       var command = data.text.trim().split(' ')[0];
 
       if (command === '!help') {
-        var helpMsg = "I'm Wunderbot, LBRY's slackbot. Here's what I can do:\n" +
+        var helpMsg = "I'm PriceBot, district0x's prime bot. Here's what I can do:\n" +
           '`!help` shows this message\n' +
-          '`!tip` sends LBC tips to others, and withdraws and deposits credits into the your tipping wallet *(now handled by <@tipbot>)*\n' +
-          '`!hash` reports on the LBRY blockchain\n' +
+          '`!price` shows the price\n' +
+          '`!price btc` shows the price in BTC\n' +
           '_type any of the above commands for more info_\n' +
           '\n' +
-          'I also update <#C266N3RMM|content> anytime new content is published on LBRY\n' +
           '\n' +
-          'My code is at https://github.com/lbryio/lbry-wunderbot. I love learning new tricks.\n';
+          'My code is at https://github.com/98farhan94/district0x-bot. I like hashes.\n';
 
         slackbot.postMessage(data.channel, helpMsg, {icon_emoji: ':bulb:'});
       }
