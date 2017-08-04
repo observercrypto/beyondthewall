@@ -19,5 +19,5 @@ Then run:
 
 ```
 npm install
-SLACK_TOKEN=<your-slack-token> CHANNEL=<channel-for-bot> node app.js
+SLACK_TOKEN=<your-slack-token> MARKET_TRADING_CHANNEL=<channel-id-for-bot> node app.js
 ```
