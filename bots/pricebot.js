@@ -8,14 +8,14 @@ var options = {
 
     // supported currencies and api steps to arrive at the final value
     currencies: {
-        USD: { steps: ['LBCBTC', 'BTCUSD'], format: '$0,0.00' },
-        GBP: { steps: ['LBCBTC', 'BTCGBP'], format: '£0,0.00' },
-        BTC: { steps: ['LBCBTC'], format: '0,0[.][00000000] BTC' }
+        USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
+        GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' },
+        BTC: { steps: ['DNTBTC'], format: '0,0[.][00000000] BTC' }
     },
 
     // api steps
     api: {
-        LBCBTC: { url: 'https://bittrex.com/api/v1.1/public/getticker?market=BTC-LBC', path: '$.result.Bid' },
+        DNTBTC: { url: 'https://api.coinmarketcap.com/v1/ticker/district0x/', path: '$[0].price_btc' },
         BTCUSD: { url: 'https://blockchain.info/ticker', path: '$.USD.buy' },
         BTCGBP: { url: 'https://blockchain.info/ticker', path: '$.GBP.buy' }
     },
@@ -85,10 +85,10 @@ function respond(bot, data) {
 
 function doHelp(bot, channel) {
   var message =
-    '`' + command + '`: show the price of 1 LBC in ' + options.defaultCurrency + '\n' +
+    '`' + command + '`: show the price of 1 DNT in ' + options.defaultCurrency + '\n' +
     '`' + command + ' help`: this message\n' +
-    '`' + command + ' CURRENCY`: show the price of 1 LBC in CURRENCY. Supported values for CURRENCY are *btc* and *usd* (case-insensitive)\n' +
-    '`' + command + ' CURRENCY AMOUNT`: show the price of AMOUNT LBC in CURRENCY\n';
+    '`' + command + ' CURRENCY`: show the price of 1 DNT in CURRENCY. Supported values for CURRENCY are *btc* and *usd* (case-insensitive)\n' +
+    '`' + command + ' CURRENCY AMOUNT`: show the price of AMOUNT DNT in CURRENCY\n';
 
     if (!channel.startsWith("D")) {
       message =
@@ -104,7 +104,7 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
     var value = numeral(rate.rate * amount).format(option.format);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' LBC = ' + value + '*\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_';
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' DNT = ' + value + '*\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_';
 }
 
 function doSteps(bot, channel, currency, amount) {
