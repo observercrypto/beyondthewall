@@ -1,9 +1,8 @@
-# Bot for [LBRY's Slack](https://slack.lbry.io)
+# Price Bot for [district0x's Slack](https://district0x-slack.herokuapp.com)
 
 Features:
 
-- Tipbot for LBC. Responds to `!tip`.
-- Posts mining info to #mining every few hours and anytime someone says `!hash`.
+- Pricebot for DNT. Responds to `!price`.
 
 
 ## Requirements
@@ -20,5 +19,5 @@ Then run:
 
 ```
 npm install
-SLACK_TOKEN=<your-slack-token> CHANNEL=<channel-for-bot> node bot.js
+SLACK_TOKEN=<your-slack-token> CHANNEL=<channel-for-bot> node app.js
 ```
