@@ -14,15 +14,6 @@ var slackbot = new SlackBot({
   name: 'PriceBot'
 });
 
-
-function sendWelcomeMessage(user) {
-  fs.readFile(path.join(path.dirname(require.main.filename), 'slack-greeting.md'), {encoding: 'utf-8'}, function (error, data) {
-    if (!error) {
-      slackbot.postMessage(user, data);
-    }
-  });
-};
-
 var pricebot = require('./bots/pricebot');
 pricebot.init(process.env.MARKET_TRADING_CHANNEL);
 
