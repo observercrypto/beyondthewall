@@ -10,14 +10,16 @@ var options = {
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
         GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' },
-        BTC: { steps: ['DNTBTC'], format: '0,0[.][00000000] BTC' }
+        BTC: { steps: ['DNTBTC'], format: '0,0[.][00000000] BTC' },
+        ETH: { steps: ['DNTETH'], format: '0,0[.][00000000] ETH' }
     },
 
     // api steps
     api: {
         DNTBTC: { url: 'https://api.coinmarketcap.com/v1/ticker/district0x/', path: '$[0].price_btc' },
         BTCUSD: { url: 'https://blockchain.info/ticker', path: '$.USD.buy' },
-        BTCGBP: { url: 'https://blockchain.info/ticker', path: '$.GBP.buy' }
+        BTCGBP: { url: 'https://blockchain.info/ticker', path: '$.GBP.buy' },
+        DNTETH: { url: 'https://api.coinmarketcap.com/v1/ticker/district0x/?convert=eth', path: '$[0].price_eth' }
     },
 
     // display date/time format
@@ -45,7 +47,7 @@ module.exports={
 function init(channel_) {
   mktChannel = channel_;
   if (!channel_) {
-    console.log('No market and trading channel. Pricebot will only respond to #bot-sandbox and DMs.');
+    console.log('No market and trading channel. Pricebot will only respond to DMs.');
   }
 
   var currencies = Object.keys(options.currencies);
@@ -60,7 +62,7 @@ function respond(bot, data) {
   var channel = data.channel,
       words = data.text.trim().split(' ').filter( function(n){return n !== "";} );
 
-  if (words[0] !== command || (channel != mktChannel && channel !== 'C1TEEBS2Z' && !channel.startsWith('D'))) {
+  if (words[0] !== command || (channel != mktChannel && !channel.startsWith('D'))) {
     // if the received message isn't starting with the trigger,
     // or the channel is not the market-and-trading channel, nor sandbox, nor a DM -> ignore
     return;
@@ -70,9 +72,9 @@ function respond(bot, data) {
   var amount = (words.length > 2) ? parseFloat(words[2], 10) : 1;
   var showHelp = (isNaN(amount)) || (Object.keys(options.currencies).indexOf(currency) === -1);
 
-  var moveToBotSandbox = showHelp && channel !== 'C1TEEBS2Z' && !channel.startsWith("D");
+  var moveToBotSandbox = showHelp && channel !== mktChannel && !channel.startsWith("D");
   if (moveToBotSandbox) {
-    bot.postMessage(channel, 'Please use <#C1TEEBS2Z|bot-sandbox> to talk to bots.', globalSlackParams);
+    bot.postMessage(channel, 'Please use PM to talk to bot.', globalSlackParams);
     return;
   }
 
