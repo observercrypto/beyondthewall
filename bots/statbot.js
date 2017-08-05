@@ -84,6 +84,7 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
+    marketstats();
   }
 }
 
@@ -120,14 +121,6 @@ function doSteps(bot, channel, currency, amount) {
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
             bot.postMessage(channel, message);
-            /*var messageu = formatMessage(amount, cache, option);
-            if (cachedRates['BTC'])
-            var messageb = formatMessage(amount, cachedRates['BTC'], options.currencies['BTC']);
-            if (cachedRates['ETH'])
-            var messagee = formatMessage(amount, cachedRates['ETH'], options.currencies['ETH']);
-            
-            bot.postMessage(channel, messageu+'\n'+messageb+'\n'+messagee+'\n_last updated:(possibly)'+moment().format(options.dtFormat) + '_');
-        */
         }
     }
 
@@ -139,9 +132,28 @@ function doSteps(bot, channel, currency, amount) {
         }
 
         processSteps(bot, channel, currency, 0, amount, steps, option);
-        //processSteps(bot, channel, 'BTC', 0, amount, steps, options.currencies['BTC']);
-        //processSteps(bot, channel, 'ETH', 0, amount, steps, options.currencies['ETH']);
     }
+}
+
+function marketstats() {
+        var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
+
+        request.get(statsurl, function(error, response, body) {
+            if (error) {
+                bot.postMessage(channel, err.message ? err.message : 'The request could not be completed at this time. Please try again later.');
+                return;
+            }
+            var marketcap = 0;
+            try {
+                marketcap = jp.query(JSON.parse(body), '$[0].price_btc');
+
+            } catch (ignored) {
+                // invalid response or pair rate
+            }
+
+                bot.postMessage(channel, marketcap, globalSlackParams);
+  
+        });
 }
 
 function processSteps(bot, channel, currency, rate, amount, steps, option) {
