@@ -84,7 +84,12 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-    marketstats(bot,channel);
+    var m = marketstats();
+    var v = volume24();
+
+            var statmsg = '*'+'Marketcap: $'+m+'\n'+'Volume: $'+v+'*\n';
+
+                bot.postMessage(channel, statmsg, globalSlackParams);
   }
 }
 
@@ -135,7 +140,7 @@ function doSteps(bot, channel, currency, amount) {
     }
 }
 
-function marketstats(bot,channel) {
+function marketstats() {
         var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
 
         request.get(statsurl, function(error, response, body) {
@@ -156,10 +161,31 @@ function marketstats(bot,channel) {
             } catch (ignored) {
                 // invalid response or pair rate
             }
+            return marketcap;
+  
+        });
+}
 
-            var statmsg = '*'+'Marketcap: $'+marketcap+'\n'+'Volume: $'+volume24+'*\n';
+function volume24() {
+        var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
 
-                bot.postMessage(channel, statmsg, globalSlackParams);
+        request.get(statsurl, function(error, response, body) {
+            if (error) {
+                bot.postMessage(channel, err.message ? err.message : 'The request could not be completed at this time. Please try again later.');
+                return;
+            }
+            var volume24 = 0;
+            try {
+                volume24 = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
+                 if (Array.isArray(volume24) && volume24.length > 0) {
+                    volume24 = volume24[0];
+                }
+
+            } catch (ignored) {
+                // invalid response or pair rate
+            }
+
+            return volume24;
   
         });
 }
