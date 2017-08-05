@@ -68,7 +68,7 @@ function respond(bot, data) {
     return;
   }
 
-  var currency = (words.length > 1) ? words[1].toUpperCase() :  options.defaultCurrency;
+  var currency = (words.length > 1) ? words[2].toUpperCase() :  options.defaultCurrency;
   var amount = (words.length > 2) ? /*parseFloat(words[2], 10)*/1 : 1;
   var showHelp = (isNaN(amount)) || (Object.keys(options.currencies).indexOf(currency) === -1);
 
@@ -81,7 +81,9 @@ function respond(bot, data) {
   if (showHelp) {
     doHelp(bot, channel);
   } else {
-    doSteps(bot, channel, currency, amount);
+    doSteps(bot, channel, 'USD', amount);
+    doSteps(bot, channel, 'BTC', amount);
+    doSteps(bot, channel, 'ETH', amount);
   }
 }
 
