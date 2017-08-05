@@ -122,7 +122,7 @@ function doSteps(bot, channel, currency, amount) {
             if (cachedRates['ETH'])
             var messagee = formatMessage(amount, cachedRates['ETH'], options.currencies['ETH']);
             
-            bot.postMessage(channel, messageu+'\n'+messageb+'\n'+messagee+'\n_last updated:(possibly) right now._');
+            bot.postMessage(channel, messageu+'\n'+messageb+'\n'+messagee+'\n_last updated:(possibly)'+moment().format(options.dtFormat) + '_');
         }
     }
 
