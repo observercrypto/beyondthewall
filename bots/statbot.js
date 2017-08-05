@@ -144,16 +144,14 @@ function marketstats(bot,channel) {
                 return;
             }
             var marketcap = 0;
-            var volume = 0;
+            var volume24 = 0;
             try {
                 marketcap = jp.query(JSON.parse(body), '$[0].market_cap_usd');
                 if (Array.isArray(marketcap) && marketcap.length > 0) {
                     marketcap = marketcap[0];
                 }
-                volume = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
-                if (Array.isArray(volume) && volume.length > 0) {
-                    volume = volume[0];
-                }
+
+                volume24 = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
 
             } catch (ignored) {
                 // invalid response or pair rate
