@@ -46,7 +46,7 @@ slackbot.on('start', function() {
     //    pricebot.respond(slackbot, data);
     //  }
       if (command === statbot.command) {
-        pricebot.respond(slackbot, data);
+        statbot.respond(slackbot, data);
       }
     }
   });
