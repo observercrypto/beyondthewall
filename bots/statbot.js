@@ -84,7 +84,7 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-    marketstats();
+    marketstats(bot,channel);
   }
 }
 
@@ -135,7 +135,7 @@ function doSteps(bot, channel, currency, amount) {
     }
 }
 
-function marketstats() {
+function marketstats(bot,channel) {
         var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
 
         request.get(statsurl, function(error, response, body) {
