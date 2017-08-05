@@ -68,7 +68,7 @@ function respond(bot, data) {
     return;
   }
 
-  var currency = /*(words.length > 1) ? words[1].toUpperCase() : */ options.defaultCurrency;
+  var currency = (words.length > 1) ? words[1].toUpperCase() :  options.defaultCurrency;
   var amount = (words.length > 2) ? /*parseFloat(words[2], 10)*/1 : 1;
   var showHelp = (isNaN(amount)) || (Object.keys(options.currencies).indexOf(currency) === -1);
 
