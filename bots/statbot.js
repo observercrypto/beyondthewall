@@ -132,8 +132,8 @@ function doSteps(bot, channel, currency, amount) {
         }
 
         processSteps(bot, channel, currency, 0, amount, steps, option);
-        processSteps(bot, channel, 'BTC', 0, amount, steps, options.currencies['BTC']);
-        processSteps(bot, channel, 'ETH', 0, amount, steps, options.currencies['ETH']);
+        //processSteps(bot, channel, 'BTC', 0, amount, steps, options.currencies['BTC']);
+        //processSteps(bot, channel, 'ETH', 0, amount, steps, options.currencies['ETH']);
     }
 }
 
