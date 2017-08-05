@@ -9,8 +9,8 @@ var options = {
     // supported currencies and api steps to arrive at the final value
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        BTC: { steps: ['DNTBTC'], format: '0,0[.][00000000] BTC' },
-        ETH: { steps: ['DNTETH'], format: '0,0[.][00000000] ETH' },
+        BTC: { steps: ['DNTBTC'], format: '0,0.00000000 BTC' },
+        ETH: { steps: ['DNTETH'], format: '0,0.00000000 ETH' },
         GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
     },
 
@@ -106,7 +106,7 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
     var value = numeral(rate.rate * amount).format(option.format);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_';
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*';
 }
 
 function doSteps(bot, channel, currency, amount) {
@@ -122,7 +122,7 @@ function doSteps(bot, channel, currency, amount) {
             if (cachedRates['ETH'])
             var messagee = formatMessage(amount, cachedRates['ETH'], options.currencies['ETH']);
             
-            bot.postMessage(channel, messageu+'\n'+messageb+'\n'+messagee);
+            bot.postMessage(channel, messageu+'\n'+messageb+'\n'+messagee+'\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_');
         }
     }
 
