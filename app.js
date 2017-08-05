@@ -15,7 +15,7 @@ var slackbot = new SlackBot({
 });
 
 var statbot = require('./bots/statbot');
-pricebot.init(process.env.MARKET_TRADING_CHANNEL);
+statbot.init(process.env.MARKET_TRADING_CHANNEL);
 
 var pricebot = require('./bots/pricebot');
 pricebot.init(process.env.MARKET_TRADING_CHANNEL);
