@@ -117,10 +117,10 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
-            if (cachedRates[USD])
-            message += formatMessage(amount, cachedRates[BTC], options.currencies[BTC]);
-            if (cachedRates[BTC])
-            message += formatMessage(amount, caccachedRates[ETH], options.currencies[ETH]);
+            if (cachedRates['BTC'])
+            message += formatMessage(amount, cachedRates['BTC'], options.currencies['BTC']);
+            if (cachedRates['ETH'])
+            message += formatMessage(amount, caccachedRates['ETH'], options.currencies['ETH']);
             bot.postMessage(channel, message);
         }
     }
