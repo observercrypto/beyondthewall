@@ -172,7 +172,7 @@ function volume24(bot,channel) {
             }
             var vol = 0;
             try {
-                vol = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
+                vol = jp.query(JSON.parse(body), "$[0].24h_volume_usd");
                 /* if (Array.isArray(volume24) && volume24.length > 0) {
                     volume24 = volume24[0];
                 }*/
