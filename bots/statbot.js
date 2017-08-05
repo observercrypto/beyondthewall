@@ -9,8 +9,8 @@ var options = {
     // supported currencies and api steps to arrive at the final value
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        BTC: { steps: ['DNTBTC'], format: '0,0.00000000 BTC' },
-        ETH: { steps: ['DNTETH'], format: '0,0.00000000 ETH' },
+        BTC: { steps: ['DNTBTC'], format: '0BTC,0.00000000' },
+        ETH: { steps: ['DNTETH'], format: '0ETH,0.00000000' },
         GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
     },
 
