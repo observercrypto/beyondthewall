@@ -11,8 +11,11 @@ var path = require('path');
 
 var slackbot = new SlackBot({
   token: process.env.SLACK_TOKEN,
-  name: 'PriceBot'
+  name: 'Price Bot'
 });
+
+var statbot = require('./bots/statbot');
+pricebot.init(process.env.MARKET_TRADING_CHANNEL);
 
 var pricebot = require('./bots/pricebot');
 pricebot.init(process.env.MARKET_TRADING_CHANNEL);
@@ -40,6 +43,9 @@ slackbot.on('start', function() {
       }
 
       if (command === pricebot.command) {
+        pricebot.respond(slackbot, data);
+      }
+      if (command === statbot.command) {
         pricebot.respond(slackbot, data);
       }
     }
