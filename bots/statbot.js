@@ -9,9 +9,9 @@ var options = {
     // supported currencies and api steps to arrive at the final value
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' },
         BTC: { steps: ['DNTBTC'], format: '0,0[.][00000000] BTC' },
-        ETH: { steps: ['DNTETH'], format: '0,0[.][00000000] ETH' }
+        ETH: { steps: ['DNTETH'], format: '0,0[.][00000000] ETH' },
+        GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
     },
 
     // api steps
@@ -117,8 +117,8 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
-            message += formatMessage(amount, cachedRates['BTC'], 'BTC');
-            message += formatMessage(amount, caccachedRates['ETH'], 'ETH');
+            message += formatMessage(amount, cachedRates[1], 1);
+            message += formatMessage(amount, caccachedRates[2], 2);
             bot.postMessage(channel, message);
         }
     }
