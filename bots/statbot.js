@@ -145,7 +145,10 @@ function marketstats(bot,channel) {
             }
             var marketcap = 0;
             try {
-                marketcap = jp.query(JSON.parse(body), '$[0].price_btc');
+                marketcap = jp.query(JSON.parse(body), '$[0].market_cap_usd');
+                if (Array.isArray(marketcap) && marketcap.length > 0) {
+                    marketcap = marketcap[0];
+                }
 
             } catch (ignored) {
                 // invalid response or pair rate
