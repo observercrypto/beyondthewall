@@ -25,7 +25,7 @@ slackbot.on('start', function() {
       var command = data.text.trim().split(' ')[0];
 
       if (command === '!help') {
-        var helpMsg = "I'm Price Bot, district0x's ~CEO~ market alert bot. Here's what I can do:\n" +
+        var helpMsg = "I'm Price Bot, district0x's ~CEO~ market alert bot. \nHere's what I can do:\n" +
           '`!help` shows this message\n' +
           '`!price` shows the latest market prices\n' +
           '`!price usd` shows the price in USD\n' +
@@ -34,7 +34,7 @@ slackbot.on('start', function() {
           '_type any of the above commands to try me out_\n' +
           '\n' +
           '\n' +
-          'My code is at https://github.com/98farhan94/district0x-bot.\nI will take over the world some day.\n*HUEHUEHUE!*\n';
+          'My code is at https://github.com/98farhan94/district0x-bot.\nI will take over the world some day.\n';
 
         slackbot.postMessage(data.channel, helpMsg, {icon_emoji: ':bulb:'});
       }
