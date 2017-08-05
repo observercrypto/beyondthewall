@@ -47,7 +47,7 @@ module.exports={
 function init(channel_) {
   mktChannel = channel_;
   if (!channel_) {
-    console.log('No market and trading channel. Pricebot will only respond to DMs.');
+    console.log('No market and trading channel. Statbot will only respond to DMs.');
   }
 
   var currencies = Object.keys(options.currencies);
@@ -68,8 +68,8 @@ function respond(bot, data) {
     return;
   }
 
-  var currency = (words.length > 1) ? words[1].toUpperCase() : options.defaultCurrency;
-  var amount = (words.length > 2) ? parseFloat(words[2], 10) : 1;
+  var currency = /*(words.length > 1) ? words[1].toUpperCase() : */ options.defaultCurrency;
+  var amount = (words.length > 2) ? /*parseFloat(words[2], 10)*/1 : 1;
   var showHelp = (isNaN(amount)) || (Object.keys(options.currencies).indexOf(currency) === -1);
 
   var moveToBotSandbox = showHelp && channel !== mktChannel && !channel.startsWith("D");
@@ -117,6 +117,8 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
+            +message = formatMessage(amount, cache, 'BTC');
+            +message = formatMessage(amount, cache, 'ETH');
             bot.postMessage(channel, message);
         }
     }
