@@ -84,7 +84,7 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-    marketstats(bot,channel);
+    //marketstats(bot,channel);
     volume24(bot,channel);
   }
 }
@@ -170,9 +170,9 @@ function volume24(bot,channel) {
                 bot.postMessage(channel, err.message ? err.message : 'The request could not be completed at this time. Please try again later.');
                 return;
             }
-            var volume24 = 0;
+            var vol = 0;
             try {
-                volume24 = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
+                vol = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
                 /* if (Array.isArray(volume24) && volume24.length > 0) {
                     volume24 = volume24[0];
                 }*/
@@ -181,7 +181,7 @@ function volume24(bot,channel) {
                 // invalid response or pair rate
             }
 
-            var statmsg = '*'+'Volume: $'+volume24+'*\n';
+            var statmsg = '*'+'Volume: $'+vol+'*\n';
 
                 bot.postMessage(channel, statmsg, globalSlackParams);
   
