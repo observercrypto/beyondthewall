@@ -94,7 +94,7 @@ function doHelp(bot, channel) {
 
     if (!channel.startsWith("D")) {
       message =
-        '*USE <#C1TEEBS2Z|bot-sandbox> FOR HELP*\n' +
+        '*USE PM FOR HELP*\n' +
         message +
         '\n' +
         '*Everyone will see what I say. Send me a Direct Message if you want to interact privately.*\n' +
@@ -106,7 +106,7 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
     var value = numeral(rate.rate * amount).format(option.format);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' DNT = ' + value + '*\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_';
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*\n_last updated ' + rate.time.utc().format(options.dtFormat) + '_';
 }
 
 function doSteps(bot, channel, currency, amount) {
