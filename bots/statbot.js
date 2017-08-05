@@ -84,12 +84,8 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-    var m = marketstats();
-    var v = volume24();
-
-            var statmsg = '*'+'Marketcap: $'+m+'\n'+'Volume: $'+v+'*\n';
-
-                bot.postMessage(channel, statmsg, globalSlackParams);
+    marketstats(bot,channel);
+    volume24(bot,channel);
   }
 }
 
@@ -140,30 +136,36 @@ function doSteps(bot, channel, currency, amount) {
     }
 }
 
-function marketstats() {
+function marketstats(bot,channel) {
         var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
-        var marketcap = 0;
 
         request.get(statsurl, function(error, response, body) {
             if (error) {
                 bot.postMessage(channel, err.message ? err.message : 'The request could not be completed at this time. Please try again later.');
                 return;
             }
+            var marketcap = 0;
+            var volume24 = 0;
             try {
                 marketcap = jp.query(JSON.parse(body), '$[0].market_cap_usd');
                 if (Array.isArray(marketcap) && marketcap.length > 0) {
                     marketcap = marketcap[0];
                 }
 
+                volume24 = jp.query(JSON.parse(body), '$[0].24h_volume_usd');
+
             } catch (ignored) {
                 // invalid response or pair rate
-            }         
+            }
+
+            var statmsg = '*'+'Marketcap: $'+marketcap+'*\n';
+
+                bot.postMessage(channel, statmsg, globalSlackParams);
   
         });
-        return marketcap;
 }
 
-function volume24() {
+function volume24(bot,channel) {
         var statsurl='https://api.coinmarketcap.com/v1/ticker/district0x/';
 
         request.get(statsurl, function(error, response, body) {
@@ -182,7 +184,9 @@ function volume24() {
                 // invalid response or pair rate
             }
 
-            return volume24;
+            var statmsg = '*'+'Volume: $'+volume24+'*\n';
+
+                bot.postMessage(channel, statmsg, globalSlackParams);
   
         });
 }
