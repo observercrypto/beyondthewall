@@ -117,8 +117,8 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
-            +message = formatMessage(amount, cache, 'BTC');
-            +message = formatMessage(amount, cache, 'ETH');
+            message += formatMessage(amount, cache, 'BTC');
+            message += formatMessage(amount, cache, 'ETH');
             bot.postMessage(channel, message);
         }
     }
