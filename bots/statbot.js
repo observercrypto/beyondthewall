@@ -117,7 +117,9 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var messageu = formatMessage(amount, cache, option);
+            if (cachedRates['BTC'])
             var messageb = formatMessage(amount, cachedRates['BTC'], options.currencies['BTC']);
+            if (cachedRates['ETH'])
             var messagee = formatMessage(amount, cachedRates['ETH'], options.currencies['ETH']);
             
             bot.postMessage(channel, messageu+messageb+messagee);
