@@ -117,8 +117,7 @@ function formatMessage(amount, rate, option) {
 
 function formaty(n, decimals, currency) {
   n = parseFloat(n);
-  decimals = parseInt(decimals);
-    return currency + " " + n.toFixed(decimals).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 }
 
 function doSteps(bot, channel, currency, amount) {
