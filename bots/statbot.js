@@ -85,7 +85,7 @@ function respond(bot, data) {
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
       //ICO price
-    var message = '*' + '1 :dnt: = 0.000719 ETH' + '* \n';
+    var message = '\n *' + '1 :dnt: = 0.000719 ETH' + '* \n';
     bot.postMessage(channel, message);
     setTimeout(function() { marketstats(bot,channel); }, 250);
     //marketstats(bot,channel);
