@@ -110,8 +110,8 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
-    var value = numeral(rate.rate * amount);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+value + '*';
+    var value = numeral(rate.rate * amount).format(option.format);
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
 }
 
 /*function formaty(n, decimals, currency) {
