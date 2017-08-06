@@ -17,8 +17,8 @@ var slackbot = new SlackBot({
 var statbot = require('./bots/statbot');
 statbot.init(process.env.MARKET_TRADING_CHANNEL);
 
-//var pricebot = require('./bots/pricebot');
-//pricebot.init(process.env.MARKET_TRADING_CHANNEL);
+var pricebot = require('./bots/pricebot');
+pricebot.init(process.env.MARKET_TRADING_CHANNEL);
 
 
 slackbot.on('start', function() {
@@ -42,9 +42,9 @@ slackbot.on('start', function() {
         slackbot.postMessage(data.channel, helpMsg, {icon_emoji: ':bulb:'});
       }
 
-      //if (command === pricebot.command) {
-    //    pricebot.respond(slackbot, data);
-    //  }
+      if (command === pricebot.command) {
+        pricebot.respond(slackbot, data);
+      }
       if (command === statbot.command) {
         statbot.respond(slackbot, data);
       }
