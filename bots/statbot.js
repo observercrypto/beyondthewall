@@ -172,7 +172,7 @@ function volume24(bot,channel) {
             }
             var volume24 = 0;
             try {
-                volume24 = jp.query(JSON.parse(body),'$[0][7]');
+                volume24 = jp.query(JSON.parse(body),'$[0].[7]');
                 if (Array.isArray(volume24) && volume24.length > 0) {
                     volume24 = volume24[0];
                 }
