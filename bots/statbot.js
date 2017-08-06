@@ -109,13 +109,10 @@ function doHelp(bot, channel) {
 }
 
 function formatMessage(amount, rate, option) {
-  var cur = option.sign;
- // var opt = Object.keys(option);
-
-//    (option == 'USD') ? cur = '$' : (option == 'BTC') ? cur = 'BTC' : cur = 'ETH';
+    var cur = option.sign;
     var value = numeral(rate.rate * amount);
     var value = formaty(value,4, cur);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*' + cur;
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + numeral(value) + '*';
 }
 
 function formaty(n, decimals, currency) {
