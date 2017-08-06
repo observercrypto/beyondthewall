@@ -128,7 +128,7 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
-            bot.postMessage(channel, message);
+            bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
         }
     }
 
@@ -165,7 +165,7 @@ function marketstats(bot,channel) {
 
             var statmsg = '*'+'Marketcap:'+marketcap+'*\n';
 
-                bot.postMessage(channel, statmsg, globalSlackParams);
+                bot.postMessage(channel, statmsg, {icon_emoji: ':dnt:'});
   
         });
 }
@@ -191,7 +191,7 @@ function volume24(bot,channel) {
 
             var statmsg = '*'+'Volume: $'+volume24+'*\n';
 
-                bot.postMessage(channel, statmsg, globalSlackParams);
+                bot.postMessage(channel, statmsg, {icon_emoji: ':dnt:'});
   
         });
 }
@@ -231,7 +231,7 @@ function processSteps(bot, channel, currency, rate, amount, steps, option) {
                 // final step, cache and then response
                 var result = { rate: rate, time: moment() };
                 cachedRates[currency] = result;
-                bot.postMessage(channel, formatMessage(amount, result, option));
+                bot.postMessage(channel, formatMessage(amount, result, option), {icon_emoji: ':bulb:'});
             } else {
                 bot.postMessage(channel, 'The rate returned for the ' + pairName + ' pair was invalid.');
             }
