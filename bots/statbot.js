@@ -110,11 +110,12 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
   var cur = '$';
-  var opt = JSON.parse(option);
+  var opt = Object.keys(option);
+
     (option == 'USD') ? cur = '$' : (option == 'BTC') ? cur = 'BTC' : cur = 'ETH';
     var value = numeral(rate.rate * amount);
     var value = formaty(value,4, cur);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*' +option;
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*' + opt;
 }
 
 function formaty(n, decimals, currency) {
