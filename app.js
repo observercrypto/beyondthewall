@@ -18,7 +18,8 @@ var statbot = require('./bots/statbot');
 statbot.init(process.env.MARKET_TRADING_CHANNEL);
 
 var pricebot = require('./bots/pricebot');
-pricebot.init(process.env.MARKET_TRADING_CHANNEL);
+pricebot.init();
+//pricebot.init(process.env.MARKET_TRADING_CHANNEL); //PMs only
 
 
 slackbot.on('start', function() {
