@@ -111,14 +111,13 @@ function doHelp(bot, channel) {
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
     var value = numeral(rate.rate * amount);
-    var tr = formaty(value,4, cur);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + tr + '*';
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+value + '*';
 }
 
-function formaty(n, decimals, currency) {
+/*function formaty(n, decimals, currency) {
   n = parseFloat(n);
     return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-}
+}*/
 
 function doSteps(bot, channel, currency, amount) {
     var option = options.currencies[currency];
