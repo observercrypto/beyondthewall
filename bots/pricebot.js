@@ -89,7 +89,7 @@ function doHelp(bot, channel) {
   var message =
     '`' + command + '`: show the price of 1 DNT in ' + options.defaultCurrency + '\n' +
     '`' + command + ' help`: this message\n' +
-    '`' + command + ' CURRENCY`: show the price of 1 DNT in CURRENCY. Supported values for CURRENCY are *btc* and *usd* (case-insensitive)\n' +
+    '`' + command + ' CURRENCY`: show the price of 1 DNT in CURRENCY. Supported values for CURRENCY are *BTC*, *ETH*. *USD* and *GBP* (case-insensitive)\n' +
     '`' + command + ' CURRENCY AMOUNT`: show the price of AMOUNT DNT in CURRENCY\n';
 
     if (!channel.startsWith("D")) {
@@ -97,8 +97,7 @@ function doHelp(bot, channel) {
         '*USE PM FOR HELP*\n' +
         message +
         '\n' +
-        '*Everyone will see what I say. Send me a Direct Message if you want to interact privately.*\n' +
-        'If I\'m not responding in some channel, you can invite me by @mentioning me.\n';
+        '*Everyone will see what I say. Send me a Direct Message if you want to interact privately.*\n';
     }
 
   bot.postMessage(channel, message, {icon_emoji: ':district0x:'});
