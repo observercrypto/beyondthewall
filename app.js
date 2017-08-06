@@ -42,6 +42,12 @@ slackbot.on('start', function() {
 
         slackbot.postMessage(data.channel, helpMsg, {icon_emoji: ':bulb:'});
       }
+      if (command === '!prediction') {
+        var helpMsg = "The prediction for DNT price is:\n" +
+          ':dnt: :rocket: :moon: \n TO THE MOON! HODL, DON\,T SELL!';
+
+        slackbot.postMessage(data.channel, helpMsg, {icon_emoji: ':crystal_ball:'});
+      }
 
       if (command === pricebot.command) {
         pricebot.respond(slackbot, data);
