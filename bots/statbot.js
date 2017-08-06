@@ -84,8 +84,6 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-      //ICO price
-    var message = '\n *' + '1 :dnt: = 0.000719 ETH' + '* \n';
     bot.postMessage(channel, message);
     setTimeout(function() { marketstats(bot,channel); }, 250);
     //marketstats(bot,channel);
@@ -115,15 +113,19 @@ function doHelp(bot, channel) {
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
     var value = numeral(rate.rate * amount).format('0,0[.][00000000]');
-    var coef = 0;
     if (option.sign == 'ETH') {
-      coef = (rate.rate/0.0000719).toFixed(2)
-      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*' + '\n' +  '*' +' Since ICO: '+ coef + 'x' + '*';
+      icoprice((rate.rate/0.0000719).toFixed(2));
+      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
     }
 
     else {
       return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
   }
+}
+
+function icoprice(ico) {
+  var message = '\n *' + 'ICO Price: 1 :dnt: = 0.000719 ETH' + '* \n' + '*' +' Since ICO: '+ ico + 'x' + '*';
+  bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
 }
 
 function formaty(n, decimals, currency) {
