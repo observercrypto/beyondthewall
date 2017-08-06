@@ -9,8 +9,8 @@ var options = {
     // supported currencies and api steps to arrive at the final value
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        BTC: { steps: ['DNTBTC'], format: 'BTC0,0.00000000' },
-        ETH: { steps: ['DNTETH'], format: 'ETH0,0.00000000' },
+        BTC: { steps: ['DNTBTC',], format: 'BTC 0,0.00000000' },
+        ETH: { steps: ['DNTETH',], format: 'ETH 0,0.00000000' },
         GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
     },
 
@@ -109,8 +109,13 @@ function doHelp(bot, channel) {
 }
 
 function formatMessage(amount, rate, option) {
-    var value = numeral(rate.rate * amount).format(option.format);
+
+    var value = numeral(rate.rate * amount).formaty(option.format);
     return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*';
+}
+
+function formaty(n, decimals, currency) {
+    return currency + " " + n.toFixed(decimals).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 }
 
 function doSteps(bot, channel, currency, amount) {
