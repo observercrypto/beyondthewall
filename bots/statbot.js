@@ -81,10 +81,10 @@ function respond(bot, data) {
   if (showHelp) {
     doHelp(bot, channel);
   } else {
+
+    doSteps(bot, channel, 'ETH', amount);
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
-    doSteps(bot, channel, 'ETH', amount);
-    bot.postMessage(channel, message);
     setTimeout(function() { marketstats(bot,channel); }, 250);
     //marketstats(bot,channel);
     //volume24(bot,channel); can't get this part to work, someone help me fix - i think it's because 24h_volume_usd starts with number
@@ -119,7 +119,7 @@ function formatMessage(amount, rate, option) {
 function icoprice(bot, channel, ico) {
   ico = parseFloat(ico);
   var message = '\n *' + 'ICO Price: 1 :dnt: = 0.000719 ETH' + '* \n' + '*' +' Since ICO: '+ ico + 'x' + '*';
-  bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
+  bot.postMessage(channel, message, {icon_emoji: ':district0x:'});
 }
 
 function formaty(n, decimals, currency) {
@@ -140,7 +140,7 @@ function doSteps(bot, channel, currency, amount) {
       icoprice(bot, channel, coef);
     }
             var message = formatMessage(amount, cache, option);
-            bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
+            bot.postMessage(channel, message, {icon_emoji: ':district0x:'});
         }
     }
 
@@ -177,7 +177,7 @@ function marketstats(bot,channel) {
 
             var statmsg = '*'+'Marketcap: '+marketcap+'*\n';
 
-                bot.postMessage(channel, statmsg, {icon_emoji: ':dnt:'});
+                bot.postMessage(channel, statmsg, {icon_emoji: ':district0x:'});
   
         });
 }
@@ -203,7 +203,7 @@ function volume24(bot,channel) {
 
             var statmsg = '*'+'Volume: $'+volume24+'*\n';
 
-                bot.postMessage(channel, statmsg, {icon_emoji: ':dnt:'});
+                bot.postMessage(channel, statmsg, {icon_emoji: ':district0x:'});
   
         });
 }
