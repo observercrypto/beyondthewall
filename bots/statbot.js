@@ -110,7 +110,7 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
 
-    var value = numeral(rate.rate * amount).formaty(option.format);
+    var value = numeral(rate.rate * amount).format(option.format);
     return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*';
 }
 
