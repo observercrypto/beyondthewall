@@ -113,17 +113,10 @@ function doHelp(bot, channel) {
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
     var value = numeral(rate.rate * amount).format('0,0[.][00000000]');
-    if (option.sign == 'ETH') {
-      icoprice((rate.rate/0.0000719).toFixed(2));
       return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
-    }
-
-    else {
-      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
-  }
 }
 
-function icoprice(ico) {
+function icoprice(bot, channel, ico) {
   var message = '\n *' + 'ICO Price: 1 :dnt: = 0.000719 ETH' + '* \n' + '*' +' Since ICO: '+ ico + 'x' + '*';
   bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
 }
@@ -141,6 +134,9 @@ function doSteps(bot, channel, currency, amount) {
         var cache = cachedRates[currency];
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
+           if (option.sign == 'ETH') {
+      icoprice(bot, channel, (rate.rate/0.0000719).toFixed(2));
+    }
             var message = formatMessage(amount, cache, option);
             bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
         }
@@ -245,6 +241,11 @@ function processSteps(bot, channel, currency, rate, amount, steps, option) {
                 // final step, cache and then response
                 var result = { rate: rate, time: moment() };
                 cachedRates[currency] = result;
+
+                if (option.sign == 'ETH') {
+      icoprice(bot, channel, (rate.rate/0.0000719).toFixed(2));
+    }
+
                 bot.postMessage(channel, formatMessage(amount, result, option), {icon_emoji: ':bulb:'});
             } else {
                 bot.postMessage(channel, 'The rate returned for the ' + pairName + ' pair was invalid.');
