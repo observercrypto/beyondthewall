@@ -117,6 +117,7 @@ function formatMessage(amount, rate, option) {
 }
 
 function icoprice(bot, channel, ico) {
+  ico = parseFloat(ico);
   var message = '\n *' + 'ICO Price: 1 :dnt: = 0.000719 ETH' + '* \n' + '*' +' Since ICO: '+ ico + 'x' + '*';
   bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
 }
