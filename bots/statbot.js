@@ -84,6 +84,9 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
+      //ICO price
+    var message = '*' + '1 :dnt: = 0.000719 ETH' + '* \n';
+    bot.postMessage(channel, message);
     setTimeout(function() { marketstats(bot,channel); }, 250);
     //marketstats(bot,channel);
     //volume24(bot,channel); can't get this part to work, someone help me fix - i think it's because 24h_volume_usd starts with number
@@ -163,7 +166,7 @@ function marketstats(bot,channel) {
                 // invalid response or pair rate
             }
 
-            var statmsg = '*'+'Marketcap:'+marketcap+'*\n';
+            var statmsg = '*'+'Marketcap: '+marketcap+'*\n';
 
                 bot.postMessage(channel, statmsg, {icon_emoji: ':dnt:'});
   
