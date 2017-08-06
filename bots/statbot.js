@@ -84,7 +84,8 @@ function respond(bot, data) {
     doSteps(bot, channel, 'USD', amount);
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
-    marketstats(bot,channel);
+    setTimeout(function() { marketstats(bot,channel); }, 1000);
+    //marketstats(bot,channel);
     //volume24(bot,channel); can't get this part to work, someone help me fix - i think it's because 24h_volume_usd starts with number
   }
 }
