@@ -9,8 +9,8 @@ var options = {
     // supported currencies and api steps to arrive at the final value
     currencies: {
         USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        BTC: { steps: ['DNTBTC'], format: '0BTC,0.00000000' },
-        ETH: { steps: ['DNTETH'], format: '0ETH,0.00000000' },
+        BTC: { steps: ['DNTBTC'], format: 'BTC0,0.00000000' },
+        ETH: { steps: ['DNTETH'], format: 'ETH0,0.00000000' },
         GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
     },
 
@@ -85,7 +85,7 @@ function respond(bot, data) {
     doSteps(bot, channel, 'BTC', amount);
     doSteps(bot, channel, 'ETH', amount);
     marketstats(bot,channel);
-    volume24(bot,channel);
+    //volume24(bot,channel); can't get this part to work, someone help me fix - i think it's because 24h_volume_usd starts with number
   }
 }
 
@@ -172,7 +172,7 @@ function volume24(bot,channel) {
             }
             var volume24 = 0;
             try {
-                volume24 = jp.query(JSON.parse(body),'$[0].[7]');
+                volume24 = jp.query(JSON.parse(body),'$[0].24h_volume_usd');
                 if (Array.isArray(volume24) && volume24.length > 0) {
                     volume24 = volume24[0];
                 }
