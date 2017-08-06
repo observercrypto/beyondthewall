@@ -8,10 +8,10 @@ var options = {
 
     // supported currencies and api steps to arrive at the final value
     currencies: {
-        USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00' },
-        BTC: { steps: ['DNTBTC',], format: 'BTC 0,0.00000000' },
-        ETH: { steps: ['DNTETH',], format: 'ETH 0,0.00000000' },
-        GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00' }
+        USD: { steps: ['DNTBTC', 'BTCUSD'], format: '$0,0.00', sign:'$' },
+        BTC: { steps: ['DNTBTC',], format: 'BTC 0,0.00000000', sign:'BTC' },
+        ETH: { steps: ['DNTETH',], format: 'ETH 0,0.00000000', sign: 'ETH' },
+        GBP: { steps: ['DNTBTC', 'BTCGBP'], format: '£0,0.00', sign: '£' }
     },
 
     // api steps
@@ -109,13 +109,13 @@ function doHelp(bot, channel) {
 }
 
 function formatMessage(amount, rate, option) {
-  var cur = '$';
-  var opt = Object.keys(option);
+  var cur = option.sign;
+ // var opt = Object.keys(option);
 
-    (option == 'USD') ? cur = '$' : (option == 'BTC') ? cur = 'BTC' : cur = 'ETH';
+//    (option == 'USD') ? cur = '$' : (option == 'BTC') ? cur = 'BTC' : cur = 'ETH';
     var value = numeral(rate.rate * amount);
     var value = formaty(value,4, cur);
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*' + opt;
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*' + cur;
 }
 
 function formaty(n, decimals, currency) {
