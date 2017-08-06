@@ -162,7 +162,7 @@ function marketstats(bot,channel) {
                 // invalid response or pair rate
             }
 
-            var statmsg = '*'+'Marketcap: $'+marketcap+'*\n';
+            var statmsg = '*'+'Marketcap:'+marketcap+'*\n';
 
                 bot.postMessage(channel, statmsg, globalSlackParams);
   
