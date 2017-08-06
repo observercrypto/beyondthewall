@@ -172,10 +172,10 @@ function volume24(bot,channel) {
             }
             var volume24 = 0;
             try {
-                volume24 = jp.query(JSON.parse(body));
-                /* if (Array.isArray(volume24) && volume24.length > 0) {
+                volume24 = jp.query(JSON.parse(body,'$[0][24h_volume_usd]');
+                if (Array.isArray(volume24) && volume24.length > 0) {
                     volume24 = volume24[0];
-                }*/
+                }
 
             } catch (ignored) {
                 // invalid response or pair rate
