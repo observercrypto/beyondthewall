@@ -68,8 +68,8 @@ function respond(bot, data) {
     return;
   }
 
-  var currency = (words.length > 1) ? words[2].toUpperCase() :  options.defaultCurrency;
-  var amount = (words.length > 2) ? /*parseFloat(words[2], 10)*/1 : 1;
+  var currency = /*(words.length > 1) ? words[2].toUpperCase() :*/  options.defaultCurrency;
+  var amount = /*(words.length > 2) ? parseFloat(words[2], 10) :*/ 1;
   var showHelp = (isNaN(amount)) || (Object.keys(options.currencies).indexOf(currency) === -1);
 
   var moveToBotSandbox = showHelp && channel !== mktChannel && !channel.startsWith("D");
