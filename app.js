@@ -31,10 +31,11 @@ slackbot.on('start', function() {
       if (command === '!help') {
         var helpMsg = "I'm Price Bot, district0x's ~CEO~ market alert bot. \nHere's what I can do:\n" +
           '`!help` shows this message\n' +
-          '`!price` shows the latest market prices\n' +
-          '`!price usd` shows the price in USD\n' +
-          '`!price eth` shows the price in ETH\n' +
-          '`!price btc` shows the price in BTC\n' +
+          '`!stats` shows the latest market prices and marketcap in #dnt_trader channel\n' +
+          '`!price` (PM only) shows the latest market price\n' +
+          '`!price <currency>` (PM only) shows the price in USD\n' +
+            'Supported currencies: USD/GBP/BTC/ETH\n' +
+          '`!price <currency> <amount>` (PM only) shows the total price of the given amount in chosen currency\n' +
           '_type any of the above commands to try me out_\n' +
           '\n' +
           '\n' +
