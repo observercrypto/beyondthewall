@@ -113,7 +113,12 @@ function doHelp(bot, channel) {
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
     var value = numeral(rate.rate * amount).format('0,0[.][00000000]');
+    if (option.sign == '$' || option.sign == '£'){
       return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
+    }
+    else {
+      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + ' ' + cur + '*';
+    }
 }
 
 function icoprice(bot, channel, ico) {
