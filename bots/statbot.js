@@ -109,8 +109,10 @@ function doHelp(bot, channel) {
 }
 
 function formatMessage(amount, rate, option) {
-
-    var value = numeral(rate.rate * amount).format(option.format);
+  var cur = '$';
+    if option == USD ? cur = '$' : if option == BTC ? cur = 'BTC' : cur = 'ETH';
+    var value = numeral(rate.rate * amount);
+    var value = formaty(value,4, cur);
     return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + value + '*';
 }
 
