@@ -110,14 +110,14 @@ function doHelp(bot, channel) {
 
 function formatMessage(amount, rate, option) {
     var cur = option.sign;
-    var value = numeral(rate.rate * amount).format(option.format);
+    var value = numeral(rate.rate * amount).format('0,0[.][00000000]');
     return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
 }
 
-/*function formaty(n, decimals, currency) {
+function formaty(n, decimals, currency) {
   n = parseFloat(n);
     return currency + " " + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-}*/
+}
 
 function doSteps(bot, channel, currency, amount) {
     var option = options.currencies[currency];
@@ -155,6 +155,7 @@ function marketstats(bot,channel) {
                 marketcap = jp.query(JSON.parse(body), '$[0].market_cap_usd');
                 if (Array.isArray(marketcap) && marketcap.length > 0) {
                     marketcap = marketcap[0];
+                    marketcap = formaty(marketcap,2,'$')
                 }
 
             } catch (ignored) {
