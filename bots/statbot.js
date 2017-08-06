@@ -117,7 +117,7 @@ function formatMessage(amount, rate, option) {
     var value = numeral(rate.rate * amount).format('0,0[.][00000000]');
     var coef = 0;
     (option.sign == 'ETH') ? coef = rate.rate/0.00000719 : 1 ;
-    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + 'coeff'+ coef '*';
+    return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + 'coeff'+ coef + '*';
 }
 
 function formaty(n, decimals, currency) {
