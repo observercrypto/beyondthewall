@@ -101,7 +101,7 @@ function doHelp(bot, channel) {
         'If I\'m not responding in some channel, you can invite me by @mentioning me.\n';
     }
 
-  bot.postMessage(channel, message, globalSlackParams);
+  bot.postMessage(channel, message, {icon_emoji: ':district0x:'});
 }
 
 function formatMessage(amount, rate, option) {
@@ -117,7 +117,7 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
             var message = formatMessage(amount, cache, option);
-            bot.postMessage(channel, message);
+            bot.postMessage(channel, message, {icon_emoji: ':district0x:'});
         }
     }
 
@@ -167,7 +167,7 @@ function processSteps(bot, channel, currency, rate, amount, steps, option) {
                 // final step, cache and then response
                 var result = { rate: rate, time: moment() };
                 cachedRates[currency] = result;
-                bot.postMessage(channel, formatMessage(amount, result, option));
+                bot.postMessage(channel, formatMessage(amount, result, option), {icon_emoji: ':district0x:'});
             } else {
                 bot.postMessage(channel, 'The rate returned for the ' + pairName + ' pair was invalid.');
             }
