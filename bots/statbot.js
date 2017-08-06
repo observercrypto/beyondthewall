@@ -118,11 +118,11 @@ function formatMessage(amount, rate, option) {
     var coef = 0;
     if (option.sign == 'ETH') {
       coef = (rate.rate/0.0000719).toFixed(2)
-      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '* \n * Since ICO: '+ coef + 'x *';
+      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*' + '\n' +  '*' +' Since ICO: '+ coef + 'x' + '*';
     }
 
     else {
-      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '\n Since ICO: '+ coef + 'x *';
+      return '*' + numeral(amount).format('0,0[.][00000000]') + ' :dnt: = ' + cur +' '+ value + '*';
   }
 }
 
