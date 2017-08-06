@@ -136,7 +136,8 @@ function doSteps(bot, channel, currency, amount) {
         shouldReload = cache.time === null || moment().diff(cache.time) >= options.refreshTime;
         if (!shouldReload) {
            if (option.sign == 'ETH') {
-      icoprice(bot, channel, (rate.rate/0.0000719).toFixed(2));
+            var coef = (cache.rate/0.0000719).toFixed(2);
+      icoprice(bot, channel, coef);
     }
             var message = formatMessage(amount, cache, option);
             bot.postMessage(channel, message, {icon_emoji: ':dnt:'});
@@ -244,7 +245,8 @@ function processSteps(bot, channel, currency, rate, amount, steps, option) {
                 cachedRates[currency] = result;
 
                 if (option.sign == 'ETH') {
-      icoprice(bot, channel, (rate.rate/0.0000719).toFixed(2));
+            var coef = (result.rate/0.0000719).toFixed(2);
+      icoprice(bot, channel, coef);
     }
 
                 bot.postMessage(channel, formatMessage(amount, result, option), {icon_emoji: ':bulb:'});
