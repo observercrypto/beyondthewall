@@ -56,6 +56,30 @@ slackbot.on('start', function() {
       if (command === statbot.command) {
         statbot.respond(slackbot, data);
       }
+      if (command === '!faq') {
+        var faqMsg = '*Where to buy?*\n' +
+          '>district0x is listed on the following exchanges:\n' +
+          '>https://liqui.io/#/exchange/DNT_ETH\n' +
+          '>https://liqui.io/#/exchange/DNT_BTC\n' +
+          '>https://liqui.io/#/exchange/DNT_USDT\n' +
+          '>https://etherdelta.github.io/#DNT-ETH\n' +
+          '\n' +
+          '*How / Where to store DNT tokens?*\n' +
+          '>Any ERC20 wallet' +
+          '\n' +
+          '*What was the DNT ICO price?*\n' +
+          '>1 :dnt: = 0.0000719 ETH\n' +
+          '\n' +
+          '*Why is DNT price so low?*\n' +
+          '>No price is high enough for our precious DNT!\n' +
+          '\n' +
+          '*When Bittrex?*\n' +
+          '>Read the following post: https://district0x.slack.com/files/joe/F6JUAT8TT/Bittrex_Update\n' +
+          '>In short: Bittrex’s ‘compliance review’ requires a payment of a minimum of $5000, with no guarantee of listing after payment.\n' +
+          '>The team has said all along that they will not be paying to be listed on any exchanges.';
+
+        slackbot.postMessage(data.channel, faqMsg, {icon_emoji: ':question:'});
+      }
     }
   });
 });
