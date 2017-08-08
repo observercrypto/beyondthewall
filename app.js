@@ -70,10 +70,7 @@ slackbot.on('start', function() {
           '*What was the DNT ICO price?*\n' +
           '>1 :dnt: = 0.0000719 ETH\n' +
           '\n' +
-          '*Why is DNT price so low?*\n' +
-          '>No price is high enough for our precious DNT!\n' +
-          '\n' +
-          '*When Bittrex?*\n' +
+          '*When will DNT get listed on Bittrex?*\n' +
           '>Read the following post: https://district0x.slack.com/files/joe/F6JUAT8TT/Bittrex_Update\n' +
           '>In short: Bittrex’s ‘compliance review’ requires a payment of a minimum of $5000, with no guarantee of listing after payment.\n' +
           '>The team has said all along that they will not be paying to be listed on any exchanges.';
